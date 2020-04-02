@@ -33,6 +33,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/helper">Helpers</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/stores">Stores </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/activities">Activities</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/messages">Messages</a>
+                        </li>
+
+
 
                     </ul>
 
