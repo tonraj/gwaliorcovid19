@@ -15,6 +15,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-git.min.js"></script>
+    <link href="/css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -34,21 +36,36 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/admin/helper">Helpers</a>
+                            <a class="nav-link" href="/admin/helper">Officer</a>
                         </li>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="/admin/stores">Stores </a>
+                            <a class="nav-link" href="/admin/stores">Stores</a>
                         </li>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="/admin/activities">Activities</a>
+                            <a class="nav-link" href="/admin/social">Social Services</a>
                         </li>
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="/admin/messages">Messages</a>
+                            <a class="nav-link" href="/admin/emergency">Emergency Request</a>
                         </li>
 
+                        
+
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Announcements
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">Send Message</a>
+                              <a class="dropdown-item" href="#"> Bulk Messages</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Homepage Message</a>
+                            </div>
+                          </li>
+
+                    
 
 
                     </ul>

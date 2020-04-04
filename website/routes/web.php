@@ -17,6 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin/stores', 'HomeController@stores');
+Route::post('/admin/stores', 'HomeController@stores');
+
+Route::get('/admin/helper', 'HomeController@helper');
+Route::post('/admin/helper', 'HomeController@helper');
+
+Route::get('/admin/social', 'HomeController@social');
+Route::post('/admin/social', 'HomeController@social');
+
+Route::get('/admin/emergency', 'HomeController@emergency');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

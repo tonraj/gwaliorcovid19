@@ -15,6 +15,10 @@ class CreateAuthorisedHelpersTable extends Migration
     {
         Schema::create('authorised_helpers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('number');
+            $table->integer('police_station_id')->unsigned();
+            $table->foreign('police_station_id')->references('id')->on('police_stations');
             $table->timestamps();
         });
     }

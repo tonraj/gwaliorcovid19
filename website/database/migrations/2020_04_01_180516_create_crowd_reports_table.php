@@ -15,6 +15,8 @@ class CreateCrowdReportsTable extends Migration
     {
         Schema::create('crowd_reports', function (Blueprint $table) {
             $table->id();
+            $table->string('message');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

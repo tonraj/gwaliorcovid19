@@ -15,6 +15,8 @@ class CreatePoliceStationsTable extends Migration
     {
         Schema::create('police_stations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->char('number', 10);
             $table->timestamps();
         });
     }

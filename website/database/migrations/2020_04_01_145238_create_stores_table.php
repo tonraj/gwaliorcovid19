@@ -15,6 +15,16 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
+            $table->string('shop_name');
+            $table->char('phone_num', 10);
+            $table->string('password');
+            $table->boolean('crowd')->default(false);
+            $table->string('current_status');
+            $table->string('address');
+            $table->integer('police_station_id')->unsigned();
+            $table->foreign('police_station_id')->references('id')->on('police_stations');
+            $table->double('lat', 15, 8);
+            $table->double('lon', 15, 8);
             $table->timestamps();
         });
     }
