@@ -137,6 +137,7 @@
                     <div  style="color:white;padding:8px;border-radius:2px;background-color:#ed1b24;" class="bg-danger mb-3 mt-3">
                     <h5> 
                         Report Crowd
+                        
                     </h5>
 
                     <small style="font-size:12px;">Your info will remain secret. <br>No personal information will be asked.</small>
@@ -144,15 +145,18 @@
                 </div>
                     <label>Register if your are :</label>
                     <br>
-                        <button class="btn btn-danger btn-sm mt-3">
+                        
+                        <a href="/register/store" class="btn btn-danger btn-sm mt-3">
                             Store Owner
-                        </button>
-                        <button class="btn btn-danger btn-sm mt-3">
+                        </a>
+                        
+                        <a href="/register/socialservice" class="btn btn-danger btn-sm mt-3">
                            doing Social Service
-                        </button>
-                        <button class="btn btn-danger btn-sm mt-3">
+                        </a>
+                        
+                        <a href="/register/officer" class="btn btn-danger btn-sm mt-3">
                             Police Officer
-                        </button>
+                        </a>
                 </div>  
                 </div>
             </div>
@@ -162,26 +166,80 @@
 
    
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script>
+<script type="text/javascript">
 
-    function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+    //http://maps.google.com/mapfiles/ms/icons/toilets.png
+    //http://maps.google.com/mapfiles/ms/icons/shopping.png
+    //http://maps.google.com/mapfiles/ms/icons/lodging.png
+    //http://maps.google.com/mapfiles/ms/icons/hospitals.png
 
-var map = new google.maps.Map(document.getElementById('map'), {
-  zoom: 4,
-  center: myLatLng
-});
 
-var marker = new google.maps.Marker({
-  position: myLatLng,
-  map: map,
-  title: 'Hello World!'
-});
-    }
-  </script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA678aIy9SFzUqUl_rOd-82CYXx2SaDa8A&callback=initMap"
+      function initialize() {
+
+        var myOptions = {
+          center: new google.maps.LatLng(26.2183, 78.1828),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+    
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+            myOptions);
+
+        $.get("/api/map", function(data, status){
+          
+            setMarkers(map,data);
+        });
+    
+        
+    
+        
+    
+      }
+    
+    
+    
+      function setMarkers(map,locations){
+    
+          var marker, i;
+    
+    for (i = 0; i < locations.length; i++)
+     {  
+    
+     var loan = locations[i][0]
+     var lat = locations[i][1]
+     var long = locations[i][2]
+     var add =  locations[i][3]
+     var image = locations[i][4]
+    
+     latlngset = new google.maps.LatLng(lat, long);
+    
+            var marker = new google.maps.Marker({  
+              map: map, title: loan , position: latlngset, icon: image
+            });
+
+            map.setCenter(marker.getPosition())
+    
+    
+            var content = "<h6>" + loan +  '</h6>' + "" + add     
+    
+      var infowindow = new google.maps.InfoWindow()
+    
+    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+            return function() {
+               infowindow.setContent(content);
+               infowindow.open(map,marker);
+            };
+        })(marker,content,infowindow)); 
+    
+      }
+      }
+    
+    
+    
+      </script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA678aIy9SFzUqUl_rOd-82CYXx2SaDa8A&callback=initialize"
    async defer></script>
 </html>

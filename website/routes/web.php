@@ -28,6 +28,22 @@ Route::post('/admin/social', 'HomeController@social');
 
 Route::get('/admin/emergency', 'HomeController@emergency');
 
+Route::get('/admin/message', 'HomeController@message');
+Route::post('/admin/message', 'HomeController@message');
+
+
+Route::get('/admin/bulkmessage', 'HomeController@bulkmessage');
+Route::post('/admin/bulkmessage', 'HomeController@bulkmessage');
+
+Route::get('/register/store', 'WebController@store');
+Route::post('/register/store', 'WebController@store');
+
+Route::get('/register/socialservice', 'WebController@socialservice');
+Route::post('/register/socialservice', 'WebController@socialservice');
+
+Route::get('/register/officer', 'WebController@officer');
+Route::post('/register/officer', 'WebController@officer');
+
 
 Auth::routes();
 

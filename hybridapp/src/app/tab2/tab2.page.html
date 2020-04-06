@@ -1,17 +1,66 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Emergency Services
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <img src="https://cdn.s3waas.gov.in/s3e369853df766fa44e1ed0ff613f563bd/uploads/2020/03/2020032498.jpg">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card *ngIf="info == false">
+    <ion-card-header>
+      <ion-card-subtitle>Save your info</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+
+      
+
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input  [(ngModel)]="name"></ion-input>
+      </ion-item>
+    
+      <ion-item line="none">
+        <ion-label position="stacked">Phone Number</ion-label>
+        <ion-input [(ngModel)]="phone" type="number"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button (click)="save(name, phone);" size="small" expand="full">Save</ion-button>
+  
+
+    </ion-card-content>
+
+ 
+  </ion-card>
+
+  <div class="ion-text-center ion-padding-top">
+ 
+    <button class="button0 button5">Alert Health Care</button>
+  
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Felling Unwell?</ion-card-subtitle>
+      <ion-card-title>Alert the Health Care</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      if you have sustepected to be have cronavisurst then alert the health care and self quatntrile untile helth care arrive to your home.
+    
+    </ion-card-content>
+    <ion-item href="#" class="ion-activated">
+      <ion-icon name="wifi" slot="start"></ion-icon>
+      <ion-label>Covid19 Symtoms</ion-label>
+    </ion-item>
+  
+  </ion-card>
+
+  
+
+
+
+
 </ion-content>

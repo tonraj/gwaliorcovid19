@@ -58,8 +58,8 @@
                               Announcements
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Send Message</a>
-                              <a class="dropdown-item" href="#"> Bulk Messages</a>
+                              <a class="dropdown-item" href="/admin/message">Send Message</a>
+                              <a class="dropdown-item" href="/admin/bulkmessage"> Bulk Messages</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="#">Homepage Message</a>
                             </div>

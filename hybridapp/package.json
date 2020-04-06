@@ -20,9 +20,17 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ionic-native/core": "^5.0.7",
+    "@ionic-native/geolocation": "^5.22.0-beta-1",
+    "@ionic-native/http": "^5.23.0",
+    "@ionic-native/native-storage": "^5.23.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
+    "@ionic-native/toast": "^5.23.0",
     "@ionic/angular": "^5.0.0",
+    "cordova-plugin-advanced-http": "^2.4.1",
+    "cordova-plugin-geolocation": "^4.0.2",
+    "cordova-plugin-nativestorage": "^2.3.2",
+    "cordova-plugin-x-toast": "^2.7.2",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -51,5 +59,15 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      },
+      "cordova-plugin-advanced-http": {},
+      "cordova-plugin-nativestorage": {},
+      "cordova-plugin-x-toast": {}
+    }
+  }
 }

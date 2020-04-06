@@ -7,6 +7,8 @@ use App\Store;
 use App\AuthorisedHelper;
 use App\SocialService;
 use App\PoliceStation;
+use App\Emergency;
+use App\Message;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
@@ -20,6 +22,99 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function bulkmessage(Request $request)
+    {
+
+        if($request->isMethod('POST')){
+
+
+            $value = $request->validate([
+                'number' => 'required',
+                'message' => 'required',
+            ],
+            [
+                'number.required' => 'Enter 10 digit phone number.',
+                'message.required' => 'Type message'
+            ]);
+
+
+            $this->sendSMS($value['message'], $value['number']);
+
+            if($request->input('home')!=null){
+
+                $new = new Message;
+                $new->message = $value['message'];
+                $new->message_type = "Home";
+                $new->save();
+
+            }
+            
+            Session::flash('alert-success', 'Message sent.');
+
+
+
+
+
+
+        }
+        return view('BulkMessage');
+
+
+    }
+
+    public function message(Request $request)
+    {
+
+        if($request->isMethod('POST')){
+
+
+            $value = $request->validate([
+                'number' => 'required',
+                'message' => 'required',
+            ],
+            [
+                'number.required' => 'Enter 10 digit phone number.',
+                'message.required' => 'Type message'
+            ]);
+
+
+            $this->sendSMS($value['message'], $value['number']);
+
+            if($request->input('home')!=null){
+
+                $new = new Message;
+                $new->message = $value['message'];
+                $new->message_type = "Home";
+                $new->save();
+
+            }
+            
+            Session::flash('alert-success', 'Message sent.');
+
+
+
+
+
+
+        }
+        return view('Message');
+
+
+    }
+
+
+    public function emergency()
+    {
+
+        $build = collect([]);
+
+        $params['services'] = Emergency::where($build->all())->latest()->paginate(25);
+
+        return view('Emergency', $params);
+
+
     }
 
     public function social(Request $request){
@@ -274,7 +369,7 @@ class HomeController extends Controller
     private function sendSMS($message, $number){
 
 
-        $authKey =env('MSG_SENDER_NAME');
+        $authKey = env('MSG_SENDER_NAME');
 
         $mobileNumber =  $number;
 
