@@ -28,14 +28,14 @@
       
 
         <ion-label position="stacked">Crowd Information</ion-label>
-        <ion-textarea placeholder="Enter more information here like Address..."></ion-textarea>
+        <ion-textarea [(ngModel)]="message" placeholder="Enter more information here like Address..."></ion-textarea>
      
       <br>
       Your info will remain secret.
     
     <br>
     <br>
-      <ion-button size="small" expand="full">Send Message</ion-button>
+      <ion-button (click)="save(message)" size="small" expand="full">Send Message</ion-button>
   
 
     </ion-card-content>

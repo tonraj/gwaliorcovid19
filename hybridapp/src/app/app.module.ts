@@ -13,6 +13,9 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +26,8 @@ import { Toast } from '@ionic-native/toast/ngx';
     HTTP,
     SplashScreen,
     NativeStorage,
+    CallNumber,
+    Diagnostic,
     Geolocation,
     Toast,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

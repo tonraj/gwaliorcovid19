@@ -1,9 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tab4</ion-title>
+    <ion-title>Announcements</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+
+  <div *ngIf="load == false" class="ion-text-center">
+
+    <br><br><br>
+  <ion-spinner></ion-spinner>
+
+  </div> 
+
+  <div *ngIf="load == true"> 
+
+  <p style="background-color:#ed1b24;margin:0px;color:white;" class="ion-padding">
+    <small> Total : {{count}} </small>
+  </p>
+
+  <ion-item *ngFor="let item of data" target="_blank" [href]="data.link">
+    <ion-label  class="ion-text-wrap">
+     {{item.message}}
+    </ion-label>
+    <small>{{datef(item.created_at)}}</small>
+  </ion-item>
+
+
+
+
+</div>
 </ion-content>

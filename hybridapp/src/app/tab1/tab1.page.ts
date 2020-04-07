@@ -1,6 +1,8 @@
 import { Component , ElementRef, NgZone, ViewChild} from '@angular/core';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { AlertController } from '@ionic/angular';
 
 declare var google: any;
 
@@ -21,9 +23,7 @@ export class Tab1Page {
     
     data:any[] =  [];
 
-  constructor(public zone: NgZone, public geolocation: Geolocation, private http: HTTP) {
-
-    
+  constructor(private diagnostic: Diagnostic, public alertController: AlertController, public zone: NgZone, public geolocation: Geolocation, private http: HTTP) {
 
       const script = document.createElement('script');
       
@@ -36,11 +36,27 @@ export class Tab1Page {
       }
       
       document.head.appendChild(script);
+
+      this.diagnostic.isGpsLocationEnabled()
+						.then((state) => {
+						  if (!state){
+
+                this.presentAlertConfirm();
+							
+							}else{
+
+                this.geolocation.getCurrentPosition().then((position) =>  {
+                  this.location.lat = position.coords.latitude;
+                  this.location.lng = position.coords.longitude;
+              });
+							
+
+							}
+
+              });
+              
       
-      this.geolocation.getCurrentPosition().then((position) =>  {
-          this.location.lat = position.coords.latitude;
-          this.location.lng = position.coords.longitude;
-      });
+      
       
       
       this.mapOptions = {
@@ -65,9 +81,7 @@ export class Tab1Page {
 
       
 
-      //this.setMarkers(this.map, this.data);
-  
-
+   
 
   }
 
@@ -125,6 +139,30 @@ export class Tab1Page {
     
     
   
+}
+
+async presentAlertConfirm() {
+  const alert = await this.alertController.create({
+    header: '<b>Location</b>',
+    message: 'Location information is unavaliable on this device. Go to Settings to enable Location.',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Go to settings',
+        handler: () => {
+          this.diagnostic.switchToLocationSettings()
+        }
+      }
+    ]
+  });
+
+  await alert.present();
 }
 
 }
