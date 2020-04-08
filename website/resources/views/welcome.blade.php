@@ -12,6 +12,57 @@
         <link href="css/logo_bar_header_mega_min.css" rel="stylesheet">
         <link href="css/theme_min.css" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .context-dark, .bg-gray-dark, .bg-primary {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+    color: #ffffff;
+}
+.nav-list li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-list li a:hover:before {
+    margin-left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 23px;
+    font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+.social-container .col {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-list li a:before {
+    content: "\f14f";
+    font: 400 21px/1 "Material Design Icons";
+    color: #4d6de6;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: -28px;
+    margin-right: 7px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .22s ease;
+}
+    </style>
     </head>
     <body>
 
@@ -48,8 +99,8 @@
                                 <!--======= Phone Number =========-->
                                 <div class="col-md-3 logo_bar_phone">
                                 
-                                    <h5>Emergency No.</h5>
-                                    <h6>+ 123 (4) 123.456.789</h6>
+                                    <h5>Helpine No.</h5>
+                                    <h6>{{$data['helpline']}}</h6>
                                 
                                 </div>
     
@@ -79,7 +130,7 @@
                                 <div class="col-md-3 logo_bar_mail">
     
                                     <h5>CONFIRMED CASES</h5>
-                                    <h6><a href="#" target="_blank">2</a></h6>
+                                    <h6>{{$data['cases']}}</h6>
     
                                 </div>
     
@@ -95,11 +146,9 @@
     
     
     
-            <!--*-*-*-*-*-*-*-*-*-*- Modal Sections *-*-*-*-*-*-*-*-*-*-->
-    
     
            
-        </header> <!--*-*-*-*-*-*-*-*-*-*- End Header Section *-*-*-*-*-*-*-*-*-*-->
+        </header>
         
     
             <div class="container-fluid components_container">
@@ -112,7 +161,7 @@
                 
                     </div>
                        <div class="col-md-2 ">
-                          <button type="button" class="btn btn-default btn-sm">Messages from Nagar Nigam</button>
+                          <button type="button" data-toggle="modal" data-target="#announcement" class="btn btn-default btn-sm">Messages from Nagar Nigam</button>
                        </div>
                     </div>
             
@@ -123,7 +172,7 @@
             <div class=" ">
                 <div class="row">
                 <div class="col-md-9">
-                 <div style="min-height:500px;" id="map"></div>
+                 <div style="min-height:600px;" id="map"></div>
                 </div>
                 <div class="col-md-3">
                    
@@ -136,7 +185,7 @@
                    
                     <div  style="color:white;padding:8px;border-radius:2px;background-color:#ed1b24;" class="bg-danger mb-3 mt-3">
                     <h5> 
-                        Report Crowd
+                        <a href="/report" class="text-white"> Report Crowd </a>
                         
                     </h5>
 
@@ -160,8 +209,44 @@
                 </div>  
                 </div>
             </div>
+
+            
             </div>
      
+
+            <footer class="section footer-classic context-dark bg-image" style="background: #ed1b24;">
+                <div class="container ">
+                  
+                <div class="row no-gutters social-container">
+                  <div class="col"><a class="social-inner" href="https://github.com/tonraj/gwaliorcovid19"><span class="icon mdi mdi-facebook"></span><span>Github</span></a></div>
+                  <div class="col"><a class="social-inner" href="https://gwalior.nic.in/"><span class="icon mdi mdi-instagram"></span><span>Gwalior Nagar Nigam</span></a></div>
+                  <div class="col"><a class="social-inner" href="https://www.mohfw.gov.in/"><span class="icon mdi mdi-twitter"></span><span>MoHFW</span></a></div>
+                </div>
+              </footer>
+
+
+            <div class="modal fade" id="announcement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Announcements from Nagar Nigam</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      @foreach ($announcemnets as $message)
+                            <li> <a href="{{$message->link}}"> {{$message->message}} </a></li>
+                      @endforeach
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
     </body>
 
    

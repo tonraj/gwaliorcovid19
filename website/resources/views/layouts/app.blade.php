@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Gwalior Covid19 Admin </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,11 +22,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+    <div  id="app">
+        <nav style="background-color:#ed1b24" class="navbar navbar-expand-md navbar-light  shadow-sm">
+            <div  class="container">
+                <a class="navbar-brand " href="{{ url('/') }}">
+                    <div class="logo">
+                        <a href="https://gwalior.nic.in/" title="गो टू होम" class="emblem " rel="home">
+                        <img class="site_logo" height="30" id="logo" src="https://cdn.s3waas.gov.in/s3e369853df766fa44e1ed0ff613f563bd/uploads/2019/05/2019052939.jpg" alt="logo">
+                          
+                     
+                      </a>
+                      <b class="text-white"> Gwalior </b>
+                    </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,26 +41,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                    <ul class="navbar-nav mr-auto ml-3 ">
+                        <li class="nav-item ">
                             <a class="nav-link" href="/admin/helper">Officer</a>
                         </li>
 
-                        <li class="nav-item active">
+                        <li class="nav-item ">
                             <a class="nav-link" href="/admin/stores">Stores</a>
                         </li>
 
-                        <li class="nav-item active">
+                        <li class="nav-item ">
                             <a class="nav-link" href="/admin/social">Social Services</a>
                         </li>
 
-                        <li class="nav-item active">
+                        <li class="nav-item ">
                             <a class="nav-link" href="/admin/emergency">Emergency Request</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/admin/crowd">Crowd Report</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/admin/map">Map Data</a>
                         </li>
 
                         
 
-                        <li class="nav-item dropdown active">
+                        <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Announcements
                             </a>

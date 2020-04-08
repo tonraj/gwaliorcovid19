@@ -14,7 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $build = collect([]);
+    $build->push(['message_type', '=', 'Home']);
+
+    $params['announcemnets'] = App\Message::where($build->all())->take(5)->get();
+    $path = base_path('covid.json');
+
+    $params['data'] =  json_decode(file_get_contents($path), true);
+    return view('welcome', $params);
+
 });
 
 Route::get('/admin/stores', 'HomeController@stores');
@@ -31,6 +40,14 @@ Route::get('/admin/emergency', 'HomeController@emergency');
 Route::get('/admin/message', 'HomeController@message');
 Route::post('/admin/message', 'HomeController@message');
 
+Route::get('/admin/crowd', 'HomeController@crowd');
+Route::post('/admin/crowd', 'HomeController@crowd');
+
+Route::get('/admin/map', 'HomeController@map');
+Route::post('/admin/map', 'HomeController@map');
+
+Route::get('/admin/announcement', 'HomeController@homemessage');
+Route::post('/admin/announcement', 'HomeController@homemessage');
 
 Route::get('/admin/bulkmessage', 'HomeController@bulkmessage');
 Route::post('/admin/bulkmessage', 'HomeController@bulkmessage');
@@ -44,11 +61,10 @@ Route::post('/register/socialservice', 'WebController@socialservice');
 Route::get('/register/officer', 'WebController@officer');
 Route::post('/register/officer', 'WebController@officer');
 
+Route::get('/report', 'WebController@report');
+Route::post('/report', 'WebController@report');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home', 'HomeController@index')->name('home');

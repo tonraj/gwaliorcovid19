@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-item>
+      <ion-label stacked>Phone No.</ion-label>
+      <ion-input [(ngModel)]="username"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  
+    <div class="ion-margin-top">
+      <ion-button  margin-right (click)="signUp()">
+        SIGN UP
+      </ion-button>
+  
+      <ion-button color="secondary" (click)="signIn()">
+        SIGN IN
+      </ion-button>
+    </div>
+   </div>
+</ion-content>

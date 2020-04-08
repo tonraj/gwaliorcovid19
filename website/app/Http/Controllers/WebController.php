@@ -7,6 +7,7 @@ use App\Store;
 use App\AuthorisedHelper;
 use App\SocialService;
 use App\PoliceStation;
+use App\CrowdReport;
 use App\Emergency;
 use App\Message;
 use Illuminate\Support\Facades\Hash;
@@ -115,6 +116,33 @@ class WebController extends Controller
 
 
         return view('Web.Social',[ "helper" => PoliceStation::all()]);
+    }
+
+    
+    function report(Request $request){
+
+        if($request->isMethod('POST')){
+
+            $value = $request->validate([
+                'message' => 'required',
+            ],
+            [
+                'name.required' => 'Enter shop name.',
+            ]);
+
+            $new = new CrowdReport;
+
+            $new->message = $value['message'];
+            
+            $new->save();
+
+            Session::flash('alert-success', 'Thank you for reporting crowd.');
+
+        }
+
+
+        
+        return view('Web.Crowd');
     }
 
 
