@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Toast } from '@ionic-native/toast/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { BasicInfoService } from '../basic-info.service';
+
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +12,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 
 export class Tab3Page {
 
-  constructor(private toast: Toast, private http: HTTP) {}
+  constructor(private BasicInfoService: BasicInfoService, private toast: Toast, private http: HTTP) {}
 
   save(message:string){
 
@@ -23,9 +25,9 @@ export class Tab3Page {
       this.toast.showLongBottom('Sending crowd report message please wait.').subscribe();
 
 
-      this.http.post('http://192.168.1.8:8000/api/report_crowd', {
+      this.http.post(this.BasicInfoService.API_URL + '/api/report_crowd', {
         message: message,
-        token: "ab"
+        token: this.BasicInfoService.API_TOKEN
       
     }, {})
       .then(data => {

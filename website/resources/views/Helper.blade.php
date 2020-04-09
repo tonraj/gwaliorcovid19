@@ -99,7 +99,7 @@
                             
     
                             <td class="align-middle">
-                            <a href="/sendmessage?number={{$helper->number}}" class="btn btn-success btn-sm text-white"><i  class="fa fa-envelope"></i></a>
+                            <a href="/admin/message?number={{$helper->number}}" class="btn btn-success btn-sm text-white"><i  class="fa fa-envelope"></i></a>
                             <a href="?action=remove&id={{$helper->id}}" class=" text-danger ml-3 "><i  class="fa fa-trash"></i></a>
     
                             

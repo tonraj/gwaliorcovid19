@@ -110,7 +110,7 @@
                             @endif
 
                             <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{$service->lat}},{{$service->lon}}" class="btn btn-primary btn-sm text-white"><i  class="fa fa-map-marker"></i></a>
-                            <a href="/sendmessage?number={{$service->phone}}" class="btn btn-success btn-sm text-white"><i  class="fa fa-envelope"></i></a>
+                            <a href="/admin/message?number={{$service->phone}}" class="btn btn-success btn-sm text-white"><i  class="fa fa-envelope"></i></a>
                             <a href="?action=remove&id={{$service->id}}" class=" text-danger ml-3 "><i  class="fa fa-trash"></i></a>
                             
                         
@@ -141,87 +141,9 @@
             
         </div>
     </div>
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Officer</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            
-              @if ($errors->any())
-      
-              <div class="flag note note--warning mb-2 mt-2">
-                <div class="flag__image note__icon">
-                <i class="fa fa-exclamation"></i> 
-                </div>
-                <div class="flag__body note__text">
-                  @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                @endforeach
-                </div>
-                
-                </div>
-              @endif
-
-
-            <form action="" method="post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="email">Officer Name:</label>
-                            <input type="text" name="name" class="form-control" id="email">
-                          </div>
-                    </div>
-                    <div class="col-md-6">
-                        
-                <div class="form-group">
-                    <label for="pwd">Nearby Police Station:</label>
-                    <select name="polic" class="form-control">
-                        @foreach($police as $help)
-                    <option value="{{$help->id}}">{{$help->name}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-
-                    </div>
-                </div>
-            
-
-                <div class="form-group">
-                    <label for="pwd">Phone Number:</label>
-                    <input type="text"  name="phone" class="form-control" id="pwd">
-                </div>
-
-                {{csrf_field()}}
-
-                <button type="submit" class="btn btn-primary mt-2 btn-block">Save Officer</button>
-            
-            </form>
-             
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               
-                </div>
-           
-      </div>
-    </div>
-  </div>
 
 
 </div>
 
-<script type="text/javascript">
-$(document).ready(function () {
 
-@if ($errors->any())
-    $('#exampleModal').modal('show');
-@endif
-});
-</script>
 @endsection

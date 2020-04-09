@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Toast } from '@ionic-native/toast/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { BasicInfoService } from '../basic-info.service';
 
 
 @Component({
@@ -14,17 +15,18 @@ export class Tab4Page implements OnInit {
   data: any;
   count: number = 0;
 
-  constructor(private toast: Toast, private http: HTTP) {
+  constructor(private BasicInfoService: BasicInfoService, private toast: Toast, private http: HTTP) {
     this.messages();
    }
 
   ngOnInit() {
    
+    
   }
 
   messages(){
 
-    this.http.post('http://192.168.1.8:8000/api/announcement', { token: "abs" }, {})
+    this.http.post(this.BasicInfoService.API_URL +  '/api/announcement', { token: this.BasicInfoService.API_TOKEN }, {})
       .then(data => {
         
         this.data = JSON.parse(data.data);

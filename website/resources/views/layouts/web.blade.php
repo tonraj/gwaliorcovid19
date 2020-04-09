@@ -20,6 +20,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+  
+        .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+            color: #ffffff;
+        }
+        
+        .social-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 23px;
+            font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+            </style>
 </head>
 <body>
     <div  id="app">
@@ -70,5 +87,15 @@
             @yield('content')
         </main>
     </div>
+
+    <footer class="section footer-classic context-dark bg-image" style="background: #ed1b24;">
+        <div class="container ">
+          
+        <div class="row no-gutters social-container">
+          <div class="col"><a class="social-inner" href="https://github.com/tonraj/gwaliorcovid19"><span class="icon mdi mdi-facebook"></span><span>Github</span></a></div>
+          <div class="col"><a class="social-inner" href="https://gwalior.nic.in/"><span class="icon mdi mdi-instagram"></span><span>Gwalior Nagar Nigam</span></a></div>
+          <div class="col"><a class="social-inner" href="https://www.mohfw.gov.in/"><span class="icon mdi mdi-twitter"></span><span>MoHFW</span></a></div>
+        </div>
+      </footer>
 </body>
 </html>

@@ -18,6 +18,7 @@ class CreateStoresTable extends Migration
             $table->string('shop_name');
             $table->char('phone_num', 10);
             $table->string('password');
+            $table->string('icon_img');
             $table->boolean('crowd')->default(false);
             $table->string('current_status');
             $table->string('address');

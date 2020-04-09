@@ -76,7 +76,7 @@
                               <a class="dropdown-item" href="/admin/message">Send Message</a>
                               <a class="dropdown-item" href="/admin/bulkmessage"> Bulk Messages</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#">Homepage Message</a>
+                              <a class="dropdown-item" href="/admin/announcement">Homepage Message</a>
                             </div>
                           </li>
 

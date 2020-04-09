@@ -10,13 +10,107 @@ use App\PoliceStation;
 use App\Emergency;
 use App\Message;
 use App\CrowdReport;
+use App\MapData;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class apiService extends Controller
 {
     //
 
     private $token = "abs";
+
+    function data(Request $request){ 
+
+        $get_content = json_decode(file_get_contents("https://covidapi.info/api/v1/country/IND"), true);
+
+        $d = array_key_last ( $get_content['result'] );
+        $params = $get_content['result'][$d];
+
+        return  response()->json($params); 
+        
+    }
+
+    function statuschange(Request $request){
+
+        $phone = $request->input('login');
+        $status = $request->input('status');
+        
+
+        try {
+            
+            $phone = Crypt::decryptString($phone);
+            $check = Store::Where([
+                ['phone_num', "=",  $phone]
+            ])->first();
+            
+            $check->current_status = $status;
+            $check->save();
+            
+            $status = 200;
+
+        
+        } catch (DecryptException $e) {
+
+            $status = 400;
+            
+        }
+
+        return  response()->json($params, $status);
+
+
+    }
+
+    function store_data(Request $request){
+
+        $phone = $request->input('login');
+        
+
+        try {
+            
+            $phone = Crypt::decryptString($phone);
+            $check = Store::Where([
+                ['phone_num', "=",  $phone]
+            ])->first();
+            $params['data'] = $check;
+            $status = 200;
+
+        
+        } catch (DecryptException $e) {
+
+            $status = 400;
+            
+        }
+
+        return  response()->json($params, $status);
+
+
+    }
+
+    function login(Request $request){
+
+        $status = 400;
+
+        $phone = $request->input('phone');
+        $password = $request->input('password');
+
+        $check = Store::Where([
+            ['phone_num', "=",  $phone]
+        ])->first();
+
+        $chk = Hash::check($password, $check->password);
+
+        if($chk){
+            $params['message'] = Crypt::encryptString($phone);
+            $status = 200;
+        }else{
+            $params['message'] = "Wrong phone number or password";
+        }
+
+        return  response()->json($params, $status);
+    }
 
     function map(){
 
@@ -28,7 +122,7 @@ class apiService extends Controller
 
 
         foreach($stores as $store){
-            $collection->push([$store->shop_name, $store->lat, $store->lon, $store->address, 'http://maps.google.com/mapfiles/ms/icons/shopping.png']);
+            $collection->push([$store->shop_name, $store->lat, $store->lon, $store->address, $store->icon_image]);
         }
 
 
@@ -39,6 +133,14 @@ class apiService extends Controller
 
         foreach($socials as $social){
             $collection->push([$social->title, $social->lat, $social->lon, $social->address, 'http://maps.google.com/mapfiles/ms/icons/shopping.png']);
+        }
+
+        $maps = MapData::Where([
+            ['status', '=' , 1 ],
+        ])->get();
+
+        foreach($maps as $map){
+            $collection->push([$map->title, $map->lan, $map->lon, $map->address, $map->icon_image]);
         }
 
 

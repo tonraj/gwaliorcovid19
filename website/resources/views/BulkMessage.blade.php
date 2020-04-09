@@ -71,10 +71,10 @@
                 <form class="card-body" method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">To All</label>
-                        <select class="form-control">
-                            <option value="Officers">Officers</option>
-                            <option value="Stores">Stores</option>
-                            <option value="Users">Users</option>
+                        <select name="type" class="form-control">
+                            <option value="Officer">Officers</option>
+                            <option value="Store">Stores</option>
+                            <option value="Consumer">Users</option>
                         </select>
                     </div>
 

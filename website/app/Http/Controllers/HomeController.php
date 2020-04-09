@@ -15,6 +15,10 @@ use App\MapData;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
+use App\Jobs\SMSNotification;
+
+
+
 class HomeController extends Controller
 {
     /**
@@ -134,18 +138,18 @@ class HomeController extends Controller
                 [
                     'title.required' => 'Enter title.',
                     'icon.required' => 'Select map data icon',
-                    'lan.required' => 'Paste labditude',
-                    'lon.required' => 'Paste Londitute',
+                    'lan.required' => 'Paste Latitude',
+                    'lon.required' => 'Paste Longitute',
                     'address.required' => 'Enter address'
                 ]);
 
                 if($value['icon'] == "Shelter"){
 
-                    $icon = "";
+                    $icon = "http://maps.google.com/mapfiles/ms/icons/lodging.png";
 
                 }elseif($value['icon'] == 'Hospital'){
 
-                    $icon = "";
+                    $icon = "http://maps.google.com/mapfiles/ms/icons/hospitals.png";
 
                 }
 
@@ -217,16 +221,14 @@ class HomeController extends Controller
 
 
             $value = $request->validate([
-                'number' => 'required',
+                'type' => 'required',
                 'message' => 'required',
             ],
             [
-                'number.required' => 'Enter 10 digit phone number.',
+                'type.required' => 'Select message send to?',
                 'message.required' => 'Type message'
             ]);
 
-
-            $this->sendSMS($value['message'], $value['number']);
 
             if($request->input('home')!=null){
 
@@ -237,7 +239,9 @@ class HomeController extends Controller
 
             }
             
-            Session::flash('alert-success', 'Message sent.');
+            Session::flash('alert-success', 'Message has been queued. Will be send ASAP.');
+
+            SMSNotification::dispatch($value['type'], $value['message']);
 
 
 
@@ -466,12 +470,14 @@ class HomeController extends Controller
                 'shop' => 'required',
                 'address' => 'required',
                 'polic' => 'required',
+                'icon' => 'required',
                 'phone' => 'required|max:10',
                 'lat' => 'required',
                 'lond' => 'required',
             ],
             [
                 'shop.required' => 'Enter shop name.',
+                'icon.required' => 'Select store type.',
                 'address.required' => 'Please enter shop address',
                 'polic.required' => 'Please slect a nearby police station',
                 'phone.required' => 'Please enter shop phone number',
@@ -480,6 +486,19 @@ class HomeController extends Controller
                 'lond.required' => 'Enter shop landitude.',
             ]);
 
+
+            if($value['icon'] == "Medical"){
+
+                $icon = "https://img.icons8.com/office/16/000000/health-book.png";
+
+            }
+
+            if($value['icon'] == "Grocery"){
+
+                $icon = "http://maps.google.com/mapfiles/ms/icons/shopping.png";
+
+            }
+
             $new = new Store;
 
             $new->shop_name = $value['shop'];
@@ -487,6 +506,7 @@ class HomeController extends Controller
             $new->password = Hash::make('phone');
             $new->current_status = "Active";
             $new->address = $value['address'];
+            $new->icon_img = $icon;
             $new->police_station_id = $value['polic'];
             $new->lat = $value['lat'];
             $new->lon = $value['lond'];
@@ -623,11 +643,11 @@ class HomeController extends Controller
     private function sendSMS($message, $number){
 
 
-        $authKey = env('MSG_SENDER_NAME');
+        $authKey = env('MSG91_KEY');
 
         $mobileNumber =  $number;
 
-        $senderId = "GWLCVD";
+        $senderId = env('MSG91_SENDER_NAME');
 
         $message = urlencode($message);
 

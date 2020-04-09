@@ -6,6 +6,8 @@ import { AlertController } from '@ionic/angular';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { BasicInfoService } from '../basic-info.service';
+
 
 @Component({
   selector: 'app-tab2',
@@ -15,8 +17,27 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 export class Tab2Page {
 
   info:boolean = true;
+  total:number = 0;
+  cured:number = 0;
+  death:number = 0;
 
-  constructor(private callNumber: CallNumber, private http: HTTP, public geolocation: Geolocation,  private toast: Toast, private nativeStorage: NativeStorage, private diagnostic: Diagnostic, public alertController: AlertController) {
+  constructor(private BasicInfoService: BasicInfoService, private callNumber: CallNumber, private http: HTTP, public geolocation: Geolocation,  private toast: Toast, private nativeStorage: NativeStorage, private diagnostic: Diagnostic, public alertController: AlertController) {
+
+  this.data();
+
+
+  this.nativeStorage.getItem('novel')
+    .then(
+      data => {
+        
+        this.cured = data['cured'];
+        this.total = data['confirmed'];
+        this.death = data['death'];
+      
+      },
+      error => {
+      }
+    );
 
   this.nativeStorage.getItem('userinfo')
     .then(
@@ -29,6 +50,38 @@ export class Tab2Page {
         this.info = false;
       }
     );
+
+
+
+
+  }
+
+
+  data(){
+
+                this.http.get(this.BasicInfoService.API_URL + '/api/data', {}, {})
+                  .then(data => {
+                    
+
+                    var json = JSON.parse(data.data);
+
+                   
+
+                    this.cured = json['recovered'];
+                    this.total = json['confirmed'];
+                    this.death = json['deaths'];
+
+                    this.nativeStorage.setItem('novel', {cured: json['recovered'], confirmed: json['confirmed'], death: json['deaths']}).then(() => {},error => {});
+      
+
+
+                  }).catch(error => {
+
+                    console.log(error.error);
+
+                  });
+
+
 
   }
 
@@ -88,9 +141,9 @@ export class Tab2Page {
                   this.toast.showLongBottom('Sending emergency request please wait.').subscribe();
 
 
-                  this.http.post('http://192.168.1.8:8000/api/emergency', {
+                  this.http.post(this.BasicInfoService.API_URL + '/api/emergency', {
                     lan: lat,
-                    token: "abs",
+                    token: this.BasicInfoService.API_TOKEN,
                     lon: lng,
                     name: name,
                     number: number
@@ -146,9 +199,34 @@ export class Tab2Page {
 
   }
 
+
+  async presentAlertService() {
+    const alert = await this.alertController.create({
+      header: 'Felling Unwell?',
+      message: 'Are your having Novel Coronavirus symptoms? Please quarantine yourself we will reach to you ASAP. ',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            
+          }
+        }, {
+          text: 'Yes! I need Help',
+          handler: () => {
+            this.emergency()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
-      header: '<b>Location</b>',
+      header: 'Location',
       message: 'Location information is unavaliable on this device. Go to Settings to enable Location.',
       buttons: [
         {

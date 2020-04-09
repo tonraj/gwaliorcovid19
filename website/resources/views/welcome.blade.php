@@ -13,28 +13,9 @@
         <link href="css/theme_min.css" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
-        .context-dark, .bg-gray-dark, .bg-primary {
-    color: rgba(255, 255, 255, 0.8);
-}
-
+  
 .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
     color: #ffffff;
-}
-.nav-list li {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.nav-list li a:hover:before {
-    margin-left: 0;
-    opacity: 1;
-    visibility: visible;
-}
-
-ul, ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .social-inner {
@@ -46,21 +27,6 @@ ul, ol {
     font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.5);
-}
-.social-container .col {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.nav-list li a:before {
-    content: "\f14f";
-    font: 400 21px/1 "Material Design Icons";
-    color: #4d6de6;
-    display: inline-block;
-    vertical-align: baseline;
-    margin-left: -28px;
-    margin-right: 7px;
-    opacity: 0;
-    visibility: hidden;
-    transition: .22s ease;
 }
     </style>
     </head>

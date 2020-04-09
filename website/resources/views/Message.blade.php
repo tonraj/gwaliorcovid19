@@ -71,7 +71,7 @@
                 <form class="card-body" method="post">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Phone Number</label>
-                      <input type="number" name="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter phoner number">
+                    <input type="number" value="{{Request::get('number')}}" name="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter phoner number">
                      </div>
 
                     <div class="form-group">

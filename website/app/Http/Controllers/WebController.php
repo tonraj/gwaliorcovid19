@@ -31,11 +31,13 @@ class WebController extends Controller
                 'polic' => 'required',
                 'phone' => 'required|max:10',
                 'lat' => 'required',
+                'icon' => 'required',
                 'lond' => 'required',
                 'password' => 'required',
             ],
             [
                 'shop.required' => 'Enter shop name.',
+                'icon.required' => 'Select store type.',
                 'address.required' => 'Please enter shop address',
                 'polic.required' => 'Please slect a nearby police station',
                 'phone.required' => 'Please enter shop phone number',
@@ -45,10 +47,23 @@ class WebController extends Controller
                 'password.required' => 'Enter shop landitude.',
             ]);
 
+            if($value['icon'] == "Medical"){
+
+                $icon = "https://img.icons8.com/office/16/000000/health-book.png";
+
+            }
+
+            if($value['icon'] == "Grocery"){
+
+                $icon = "http://maps.google.com/mapfiles/ms/icons/shopping.png";
+
+            }
+
             $new = new Store;
 
             $new->shop_name = $value['shop'];
             $new->phone_num = $value['phone'];
+            $new->icon_img = $icon;
             $new->password = Hash::make($value['password']);
             $new->current_status = "Pending";
             $new->address = $value['address'];

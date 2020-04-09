@@ -3,6 +3,7 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { AlertController } from '@ionic/angular';
+import { BasicInfoService } from '../basic-info.service';
 
 declare var google: any;
 
@@ -16,45 +17,46 @@ export class Tab1Page {
     @ViewChild('Map', {static: true}) mapElement: ElementRef;
     map: any;
     mapOptions: any;
-    location = {lat: 26.2183, lng: 78.1828};
+    location = {lat: this.BasicInfoService.INIT_LAN, lng: this.BasicInfoService.INIT_LON};
     markerOptions: any = {position: null, map: null, title: null};
     marker: any;
-    apiKey: any = 'AIzaSyA678aIy9SFzUqUl_rOd-82CYXx2SaDa8A'; 
-    
+  
     data:any[] =  [];
 
-  constructor(private diagnostic: Diagnostic, public alertController: AlertController, public zone: NgZone, public geolocation: Geolocation, private http: HTTP) {
+  constructor(private BasicInfoService: BasicInfoService, private diagnostic: Diagnostic, public alertController: AlertController, public zone: NgZone, public geolocation: Geolocation, private http: HTTP) {
+    
+  }
 
+
+
+  ngOnInit() {
+   
       const script = document.createElement('script');
       
       script.id = 'googleMap';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.BasicInfoService.GOOGLE_MAP_API_KEY;
       
-      if (this.apiKey) {
-          script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.apiKey;
-      } else {
-          script.src = 'https://maps.googleapis.com/maps/api/js?key=';
-      }
       
       document.head.appendChild(script);
 
       this.diagnostic.isGpsLocationEnabled()
-						.then((state) => {
-						  if (!state){
+      .then((state) => {
+        if (!state){
 
-                this.presentAlertConfirm();
-							
-							}else{
+          this.presentAlertConfirm();
+        
+        }else{
 
-                this.geolocation.getCurrentPosition().then((position) =>  {
-                  this.location.lat = position.coords.latitude;
-                  this.location.lng = position.coords.longitude;
-              });
-							
+          this.geolocation.getCurrentPosition().then((position) =>  {
+            this.location.lat = position.coords.latitude;
+            this.location.lng = position.coords.longitude;
+        });
+        
 
-							}
+        }
 
-              });
-              
+        });
+        
       
       
       
@@ -72,7 +74,7 @@ export class Tab1Page {
           this.markerOptions.position = this.location;
           this.markerOptions.map = this.map;
           this.markerOptions.title = 'My Location';
-          //this.markerOptions.icon = 'My Location';
+          
           this.marker = new google.maps.Marker(this.markerOptions);
           this.setMarkers(this.map);
 
@@ -83,11 +85,13 @@ export class Tab1Page {
 
    
 
+      
   }
 
+  
    setMarkers(map){
 
-    this.http.get('http://192.168.1.8:8000/api/map', {}, {})
+    this.http.get(this.BasicInfoService.API_URL + '/api/map', {}, {})
   .then(data => {
 
     var locations = JSON.parse(data.data);
@@ -102,8 +106,6 @@ export class Tab1Page {
     var long = locations[i][2]
     var add =  locations[i][3]
     var image = locations[i][4]
-
-    console.log(image);
   
     var latlngset = new google.maps.LatLng(lat, long);
   
@@ -143,7 +145,7 @@ export class Tab1Page {
 
 async presentAlertConfirm() {
   const alert = await this.alertController.create({
-    header: '<b>Location</b>',
+    header: 'Location',
     message: 'Location information is unavaliable on this device. Go to Settings to enable Location.',
     buttons: [
       {

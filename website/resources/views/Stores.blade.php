@@ -137,7 +137,7 @@
 
                         <td class="align-middle">
                         <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{$store->lat}},{{$store->lon}}" class="btn btn-primary btn-sm text-white"><i  class="fa fa-map-marker"></i></a>
-                        <a href="/sendmessage?number={{$store->phone_num}}" class="btn btn-success btn-sm text-white"><i  class="fa fa-envelope"></i></a>
+                        <a href="/admin/message?number={{$store->phone_num}}" class="btn btn-success btn-sm text-white"><i  class="fa fa-envelope"></i></a>
                         <a href="?action=remove&id={{$store->id}}" class=" text-danger ml-3 "><i  class="fa fa-trash"></i></a>
 
                         
@@ -206,6 +206,9 @@
                             <input type="text" name="shop" class="form-control" id="email">
                           </div>
                     </div>
+
+
+
                     <div class="col-md-6">
                         
                 <div class="form-group">
@@ -218,6 +221,17 @@
                   </div>
 
                     </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label for="pwd">Shop Type:</label>
+                  <select name="icon" class="form-control">
+                      
+                         <option value="Medical">Medical</option>
+                         <option value="Grocery">Grocery</option>
+                
+                  </select>
                 </div>
                 
                 <div class="form-group">
@@ -239,7 +253,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="pwd">Londitude:</label>
+                            <label for="pwd">Longitude:</label>
                             <input type="number" name="lond" class="form-control" id="pwd">
                             </div>
                     </div>
