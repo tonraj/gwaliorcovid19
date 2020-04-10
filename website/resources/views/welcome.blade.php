@@ -215,12 +215,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-    //http://maps.google.com/mapfiles/ms/icons/toilets.png
-    //http://maps.google.com/mapfiles/ms/icons/shopping.png
-    //http://maps.google.com/mapfiles/ms/icons/lodging.png
-    //http://maps.google.com/mapfiles/ms/icons/hospitals.png
-
-
       function initialize() {
 
         var myOptions = {
@@ -284,6 +278,6 @@
     
     
       </script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA678aIy9SFzUqUl_rOd-82CYXx2SaDa8A&callback=initialize"
+   <script src="https://maps.googleapis.com/maps/api/js?key={GOOGLE_MAP_API_KEY}&callback=initialize"
    async defer></script>
 </html>

@@ -300,7 +300,7 @@
 
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA678aIy9SFzUqUl_rOd-82CYXx2SaDa8A&callback=initialize"
+<script src="https://maps.googleapis.com/maps/api/js?key={GOOGLE_MAP_API_KEY}&callback=initialize"
 async defer></script>
 </body>
 </html>

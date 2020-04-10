@@ -32,14 +32,12 @@ export class AppComponent {
         data => {
           
           this.navCtrl.setDirection('root');
-          this.router.navigate(['/home']); 
+          this.router.navigate(['/store']); 
 
           
         },
         error => {
           
-
-
         }
       );
 

@@ -17,6 +17,23 @@ export class HomePage {
   login: boolean = false;
 
   constructor( private router: Router, private navCtrl: NavController, private nativeStorage: NativeStorage, private http: HTTP, private api:APIService) {
+
+    this.nativeStorage.getItem('login')
+      .then(
+        data => {
+          
+          
+          this.navCtrl.setDirection('root');
+          this.router.navigate(['/store']); 
+
+          
+        },
+        error => {
+          
+          console.log("hgfhg")
+
+        }
+      );
     
   }
 
