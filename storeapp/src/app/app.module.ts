@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP } from '@ionic-native/http/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     StatusBar,
     SplashScreen,
     NativeStorage,
+    Diagnostic,
+    CallNumber,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

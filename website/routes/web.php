@@ -26,8 +26,18 @@ Route::get('/', function () {
 
 });
 
+Route::get('/download', function () {
+
+    return view('Web.Download');
+
+});
+
 Route::get('/admin/stores', 'HomeController@stores');
 Route::post('/admin/stores', 'HomeController@stores');
+
+Route::get('/admin/station', 'HomeController@station');
+Route::post('/admin/station', 'HomeController@station');
+
 
 Route::get('/admin/helper', 'HomeController@helper');
 Route::post('/admin/helper', 'HomeController@helper');

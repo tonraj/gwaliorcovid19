@@ -1,14 +1,16 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
 
   <div id="container">
+      
+  <div class="ion-padding-bottom">
+    <img style="height:80px;" src="https://cdn.s3waas.gov.in/s3e369853df766fa44e1ed0ff613f563bd/uploads/2019/05/2019052939.jpg">
+    <h3 style="color:grey;font-weight :200;">CovidFree Store Manager</h3>
+  
+  </div>
     <ion-item>
       <ion-label stacked>Phone No.</ion-label>
-      <ion-input [(ngModel)]="username"></ion-input>
+      <ion-input [(ngModel)]="phone"></ion-input>
     </ion-item>
   
     <ion-item>
@@ -21,9 +23,15 @@
         SIGN UP
       </ion-button>
   
-      <ion-button color="secondary" (click)="signIn()">
+      <ion-button *ngIf="login == false" color="secondary" (click)="signIn(phone, password)">
         SIGN IN
       </ion-button>
+
+      <ion-button *ngIf="login" color="secondary" (click)="signIn(phone, password)">
+        SIGNING IN
+      </ion-button>
+
+
     </div>
    </div>
 </ion-content>

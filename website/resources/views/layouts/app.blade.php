@@ -27,12 +27,11 @@
             <div  class="container">
                 <a class="navbar-brand " href="{{ url('/') }}">
                     <div class="logo">
-                        <a href="https://gwalior.nic.in/" title="गो टू होम" class="emblem " rel="home">
+                        <a href="/" title="गो टू होम" class="emblem " rel="home">
                         <img class="site_logo" height="30" id="logo" src="https://cdn.s3waas.gov.in/s3e369853df766fa44e1ed0ff613f563bd/uploads/2019/05/2019052939.jpg" alt="logo">
                           
                      
                       </a>
-                      <b class="text-white"> Gwalior </b>
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,9 +41,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto ml-3 ">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/admin/helper">Officer</a>
-                        </li>
+
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Officer
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="/admin/helper">Officers</a>
+                              <a class="dropdown-item" href="/admin/station"> Police Station</a>
+                             
+                            </div>
+                          </li>
+                      
+                      
 
                         <li class="nav-item ">
                             <a class="nav-link" href="/admin/stores">Stores</a>

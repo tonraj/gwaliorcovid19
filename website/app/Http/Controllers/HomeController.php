@@ -31,6 +31,62 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
+    function station(Request $request){
+
+        if($request->isMethod('get')){
+
+            $id = $request->input('id');
+
+            $post = Message::find($id);
+
+
+            if($request->input('action') == 'remove'){
+
+                $post->delete();
+                Session::flash('alert-success', 'Station is Deleted.');
+
+                return redirect('/admin/station');
+            }
+        }
+
+        if($request->isMethod('post')){
+
+            if($request->input('add')=="add"){
+
+
+                $value = $request->validate([
+                    'name' => 'required',
+                    'number' => 'required',
+                ],
+                [
+                    'name.required' => 'Please enter station name.',
+                    'number.required' => 'Please enter station incharge phone number.'
+                ]);
+
+               
+
+
+                $new = new PoliceStation;
+
+                $new->name = $value['name'];
+                $new->number =  $value['number'];
+              
+                $new->save();
+                Session::flash('alert-success', 'Station added.');
+
+            }
+        }
+
+        
+        $build = collect([]);
+      
+        $params['datas'] = PoliceStation::where($build->all())->latest()->paginate(25);
+
+        return view('Station', $params);
+    
+    }
+
     function homemessage(Request $request){
 
         if($request->isMethod('get')){
@@ -59,7 +115,7 @@ class HomeController extends Controller
                     'message' => 'required',
                 ],
                 [
-                    'link.required' => 'Enter title.',
+                    'link.required' => 'Paste any link.',
                     'message.required' => 'Select map data icon'
                 ]);
 
@@ -138,9 +194,9 @@ class HomeController extends Controller
                 [
                     'title.required' => 'Enter title.',
                     'icon.required' => 'Select map data icon',
-                    'lan.required' => 'Paste Latitude',
-                    'lon.required' => 'Paste Longitute',
-                    'address.required' => 'Enter address'
+                    'lan.required' => 'Paste Latitude or drop point to Map ',
+                    'lon.required' => 'Paste Longitute  or drop point to Map',
+                    'address.required' => 'Enter address of the data'
                 ]);
 
                 if($value['icon'] == "Shelter"){
@@ -396,10 +452,10 @@ class HomeController extends Controller
                 'phone' => 'required|max:10',
             ],
             [
-                'name.required' => 'Enter shop name.',
-                'polic.required' => 'Please slect a nearby police station',
-                'phone.required' => 'Please enter shop phone number',
-                'phone.max' => 'Please enter a valid shop phone number',
+                'name.required' => 'Type officer name.',
+                'polic.required' => 'Please select a nearby police station',
+                'phone.required' => 'Please enter officer phone number',
+                'phone.max' => 'Please enter a valid officer phone number',
             ]);
 
             $new = new AuthorisedHelper;
@@ -480,10 +536,10 @@ class HomeController extends Controller
                 'icon.required' => 'Select store type.',
                 'address.required' => 'Please enter shop address',
                 'polic.required' => 'Please slect a nearby police station',
-                'phone.required' => 'Please enter shop phone number',
-                'phone.max' => 'Please enter a valid shop phone number',
+                'phone.required' => 'Please enter owner phone number',
+                'phone.max' => 'Please enter a valid owner phone number',
                 'lat.required' => 'Enter shop latintue.',
-                'lond.required' => 'Enter shop landitude.',
+                'lond.required' => 'Enter shop langitude.',
             ]);
 
 
@@ -578,8 +634,8 @@ class HomeController extends Controller
                     'message' => 'required',
                 ],
                 [
-                    'link.required' => 'Enter title.',
-                    'message.required' => 'Select map data icon'
+                    'link.required' => 'Enter link.',
+                    'message.required' => 'Type announcement message.',
                 ]);
 
                

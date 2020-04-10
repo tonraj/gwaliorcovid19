@@ -33,7 +33,44 @@ class apiService extends Controller
         
     }
 
+
+    function statuscrowd(Request $request){
+
+        $params = [];
+        $status_ = 400;
+
+        $phone = $request->input('login');
+        $status = $request->input('status');
+        
+
+        try {
+            
+            $phone = Crypt::decryptString($phone);
+            $check = Store::Where([
+                ['phone_num', "=",  $phone]
+            ])->first();
+            
+            $check->crowd = (int)$status;
+            $check->save();
+            
+            $status_ = 200;
+
+        
+        } catch (DecryptException $e) {
+
+            $status_ = 400;
+            
+        }
+
+        return  response()->json($params, $status_);
+
+
+    }
+
     function statuschange(Request $request){
+
+        $params = [];
+        $status_ = 400;
 
         $phone = $request->input('login');
         $status = $request->input('status');
@@ -49,16 +86,16 @@ class apiService extends Controller
             $check->current_status = $status;
             $check->save();
             
-            $status = 200;
+            $status_ = 200;
 
         
         } catch (DecryptException $e) {
 
-            $status = 400;
+            $status_ = 400;
             
         }
 
-        return  response()->json($params, $status);
+        return  response()->json($params, $status_);
 
 
     }
@@ -117,12 +154,13 @@ class apiService extends Controller
         $collection = collect([]);
 
         $stores = Store::Where([
-            ['current_status', "=", "Open"]
+            ['current_status', "=", "Open"],
+			['crowd', "=", 0]
         ])->get();
 
 
         foreach($stores as $store){
-            $collection->push([$store->shop_name, $store->lat, $store->lon, $store->address, $store->icon_image]);
+            $collection->push([$store->shop_name, $store->lat, $store->lon, $store->address, $store->icon_img]);
         }
 
 
@@ -132,7 +170,7 @@ class apiService extends Controller
         ])->get();
 
         foreach($socials as $social){
-            $collection->push([$social->title, $social->lat, $social->lon, $social->address, 'http://maps.google.com/mapfiles/ms/icons/shopping.png']);
+            $collection->push([$social->title, $social->lat, $social->lon, $social->address, 'https://maps.google.com/mapfiles/ms/icons/shopping.png']);
         }
 
         $maps = MapData::Where([

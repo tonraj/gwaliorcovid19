@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Gwalior CovidFree - Essential Map, Info and Crowd Reporting.</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -12,22 +12,23 @@
         <link href="css/logo_bar_header_mega_min.css" rel="stylesheet">
         <link href="css/theme_min.css" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
     <style>
   
-.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
-    color: #ffffff;
-}
+        .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+            color: #ffffff;
+        }
 
-.social-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 23px;
-    font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-}
+        .social-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 23px;
+            font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
     </head>
     <body>
@@ -37,17 +38,15 @@
         
     
           
-            
-            <!--*-*-*-*-*-*-*-*-*-*- Logo Bar *-*-*-*-*-*-*-*-*-*-->
-    
+      
             <div class="container-fluid logo_bar_container_fluid">		
                 <div class="container">			
                     <div class="row">
                     
-                        <!--======= Logo =========-->
                         <div class="col-md-4">
                         
-                          <h2> Gwalior Covid19 </h2>
+                          <h2> Gwalior CovidFree </h2>
+                         
                         
                         </div>
                         
@@ -55,14 +54,12 @@
                         
                             <div class="row">
                                 
-                                <!--======= Icon =========-->
                                 <div class="col-md-1 logo_bar_icons">
                                 
                                     <i class="fa fa-phone"></i>
                                 
                                 </div>
                                 
-                                <!--======= Phone Number =========-->
                                 <div class="col-md-3 logo_bar_phone">
                                 
                                     <h5>Helpine No.</h5>
@@ -70,29 +67,25 @@
                                 
                                 </div>
     
-                                <!--======= Icon =========-->
-                                <div class="col-md-1 logo_bar_icons">
+                                 <div class="col-md-1 logo_bar_icons">
     
                                     <i class="fa fa-android"></i>
     
                                 </div>
     
-                                <!--======= Schedule =========-->
-                                <div class="col-md-3 logo_bar_schedule">
+                               <div class="col-md-3 logo_bar_schedule">
     
                                     <h5>Download App</h5>
-                                    <h6><a href="#" target="_blank">Android</a></h6>
+                                    <h6><a href="/download">Android</a></h6>
     
                                 </div>
     
-                                <!--======= Icon =========-->
-                                <div class="col-md-1 logo_bar_icons">
+                               <div class="col-md-1 logo_bar_icons">
     
                                     <i class="fa fa-hospital-o"></i>
     
                                 </div>
     
-                                <!--======= Email =========-->
                                 <div class="col-md-3 logo_bar_mail">
     
                                     <h5>CONFIRMED CASES</h5>
@@ -123,11 +116,11 @@
                     <div class="row ">
                
                     <div class="col-md-10">
-                        <h6 class="mt-1">Get details of Consumer Stores in Gwalior City. </h6>
+                        <h6 class="mt-1">Gwalior essential store Map. </h6>
                 
                     </div>
                        <div class="col-md-2 ">
-                          <button type="button" data-toggle="modal" data-target="#announcement" class="btn btn-default btn-sm">Messages from Nagar Nigam</button>
+                          <button type="button" data-toggle="modal" data-target="#announcement" class="btn btn-default btn-sm">Announcements</button>
                        </div>
                     </div>
             
@@ -135,12 +128,12 @@
                 
             </div>
     
-            <div class=" ">
+            <div class="container ">
                 <div class="row">
                 <div class="col-md-9">
                  <div style="min-height:600px;" id="map"></div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-4">
                    
                 <div class="mt-4">
                     <h2 class="mb-4"><i> Break the Chain </i></h2>
@@ -195,7 +188,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Announcements from Nagar Nigam</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Announcements</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>

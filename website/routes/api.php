@@ -16,6 +16,7 @@ Route::middleware('api')->post('/store_update', 'apiService@store_update');
 Route::middleware('api')->post('/store_data', 'apiService@store_data');
 Route::middleware('api')->post('/login', 'apiService@login');
 Route::middleware('api')->post('/statuschange', 'apiService@statuschange');
+Route::middleware('api')->post('/statuscrowd', 'apiService@statuscrowd');
 Route::middleware('api')->get('/data', 'apiService@data');
 
 

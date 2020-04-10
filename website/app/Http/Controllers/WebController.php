@@ -40,8 +40,8 @@ class WebController extends Controller
                 'icon.required' => 'Select store type.',
                 'address.required' => 'Please enter shop address',
                 'polic.required' => 'Please slect a nearby police station',
-                'phone.required' => 'Please enter shop phone number',
-                'phone.max' => 'Please enter a valid shop phone number',
+                'phone.required' => 'Please enter phone number',
+                'phone.max' => 'Please enter a valid phone number',
                 'lat.required' => 'Enter shop latintue.',
                 'lond.required' => 'Enter shop landitude.',
                 'password.required' => 'Enter shop landitude.',
@@ -98,15 +98,15 @@ class WebController extends Controller
                 'time' => 'required',
             ],
             [
-                'name.required' => 'Enter shop name.',
-                'address.required' => 'Please enter shop address',
-                'polic.required' => 'Please slect a nearby police station',
-                'phone.required' => 'Please enter shop phone number',
-                'phone.max' => 'Please enter a valid shop phone number',
-                'lat.required' => 'Enter shop latintue.',
-                'lond.required' => 'Enter shop landitude.',
-                'time.required' => 'Enter shop landitude.',
-                'title.required' => 'Enter shop landitude.',
+                'name.required' => 'Enter your name.',
+                'address.required' => 'Please enter service address',
+                'polic.required' => 'Please select a nearby police station',
+                'phone.required' => 'Please enter your phone number',
+                'phone.max' => 'Please enter a valid  phone number',
+                'lat.required' => 'Enter service latintue.',
+                'lond.required' => 'Enter service langitude.',
+                'time.required' => 'Select or type service end time.',
+                'title.required' => 'Enter your service title',
             ]);
 
             $new = new SocialService;
@@ -142,7 +142,7 @@ class WebController extends Controller
                 'message' => 'required',
             ],
             [
-                'name.required' => 'Enter shop name.',
+                'name.required' => 'Enter the message.',
             ]);
 
             $new = new CrowdReport;
@@ -172,10 +172,10 @@ class WebController extends Controller
                 'number' => 'required|max:10',
             ],
             [
-                'name.required' => 'Enter shop name.',
-                'polic.required' => 'Please enter shop address',
-                'number.required' => 'Please enter shop phone number',
-                'number.max' => 'Please enter a valid shop phone number',
+                'name.required' => 'Enter your name.',
+                'polic.required' => 'Select the police station.',
+                'number.required' => 'Please enter your valid phone number.',
+                'number.max' => 'Please enter your valid phone number',
             ]);
 
             $new = new AuthorisedHelper;

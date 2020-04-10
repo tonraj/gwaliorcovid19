@@ -49,7 +49,7 @@
                           
                      
                       </a>
-                      <b class="text-white"> Gwalior </b>
+                      <b class="text-white ml-2"> Gwalior  CovidFree</b>
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -60,15 +60,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto ml-3 ">
                         <li class="nav-item ">
-                            <a class="nav-link" href="/admin/helper">Download App</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="/admin/stores">Store Registration</a>
+                            <a class="nav-link" href="/download">Download App</a>
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="/admin/social">Report Crowd</a>
+                            <a class="nav-link" href="/register/store">Store Registration</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/report">Report Crowd</a>
                         </li>
 
                      
