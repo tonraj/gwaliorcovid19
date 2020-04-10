@@ -13,6 +13,6 @@ In this difficult time of the Covid19 outreach, I have built this Website and An
 - PHP 7.3, Laravel - Website
 - Ionic 4 - User and Store Manager App
 
-in case you got any error in migrateing database i have included my exported database.
+in case you got any error in migrating database i have included my exported database.
 
 Suggestions are always welcome. For implementation guidance contact me at rs1888282@gmail.com
