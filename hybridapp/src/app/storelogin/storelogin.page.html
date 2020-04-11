@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="ion-text-center ion-margin-top">
+       
+  <div class="ion-padding-bottom">
+    <ion-icon class="ion-padding" style="font-size:50px;color:#ed1b24;" name="person-add"></ion-icon>
+    <h3 style="color:#ed1b24;font-weight :200;">Login as Store Manager</h3>
+    <p>Please login to your store account, or create an account if dont have one.</p>
+  </div>
+
+  <div class="ion-padding">
+    <ion-item>
+      <ion-label stacked>Phone No.</ion-label>
+      <ion-input type="number" [(ngModel)]="phone"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+  </div>
+  
+  
+    <div class=" ion-padding">
+    
+      <ion-button expand="block" *ngIf="login == false" color="danger" (click)="signIn(phone, password)">
+        SIGN IN
+      </ion-button>
+
+      <ion-button *ngIf="login" color="danger" (click)="signIn(phone, password)">
+        SIGNING IN
+      </ion-button>
+
+      <p>or</p>
+
+      <a style="text-decoration: none;" href="https://gwlcovidfree.in/register/store" target="_blank">Create a Store Account</a>
+
+
+    </div>
+   </div>
+</ion-content>

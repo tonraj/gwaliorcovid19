@@ -33,7 +33,6 @@ class apiService extends Controller
         
     }
 
-
     function statuscrowd(Request $request){
 
         $params = [];
@@ -135,8 +134,18 @@ class apiService extends Controller
 
         $check = Store::Where([
             ['phone_num', "=",  $phone]
-        ])->first();
+        ]);
+		
+		if($check->count() == 0){
+			
+			$params['message'] = "No account associated to the provided phone number found.";
+			
+			return  response()->json($params, $status);
+			
+		}
+		
 
+		$check = $check->first();
         $chk = Hash::check($password, $check->password);
 
         if($chk){

@@ -15,7 +15,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +28,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     NativeStorage,
     CallNumber,
     Diagnostic,
+    FCM,
     Geolocation,
     Toast,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

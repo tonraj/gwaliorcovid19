@@ -12,6 +12,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     StatusBar,
     SplashScreen,
     NativeStorage,
+    FCM,
     Diagnostic,
     CallNumber,
     HTTP,

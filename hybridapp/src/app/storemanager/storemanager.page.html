@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Store Dashboard</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+
+  <div *ngIf="loading" class="ion-text-center">
+    <br><br>
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="loading == false">
+
+  <p class="ion-padding">
+    Welcome, <b>{{data['shop_name']}}</b>
+    <br>
+    <small>
+     {{data['address']}}
+    </small>
+  </p>
+
+
+
+  <ion-card>
+    
+    <ion-item lines="none">
+      <ion-label>Store mark as Open / Close</ion-label>
+      <ion-toggle (click)="store_status(status);" [(ngModel)]="status"></ion-toggle>
+    </ion-item>
+
+    <ion-card-content>
+      Your store will not displayed in map if store set to close.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    
+    <ion-item lines="none">
+      <ion-label>Uncontrollable Crowd?</ion-label>
+      <ion-toggle (click)="crowd_status(crowd);" [(ngModel)]="crowd"></ion-toggle>
+    </ion-item>
+    <ion-card-content>
+      Unable to control the crowd in your store? Turn it on, Police will come to your store to control the crowd.
+    </ion-card-content>
+  </ion-card>
+
+
+</div>  
+
+
+</ion-content>

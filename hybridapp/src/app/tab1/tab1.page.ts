@@ -4,6 +4,8 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { AlertController } from '@ionic/angular';
 import { BasicInfoService } from '../basic-info.service';
+import { Router } from '@angular/router';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 declare var google: any;
 
@@ -23,11 +25,31 @@ export class Tab1Page {
   
     data:any[] =  [];
 
-  constructor(private BasicInfoService: BasicInfoService, private diagnostic: Diagnostic, public alertController: AlertController, public zone: NgZone, public geolocation: Geolocation, private http: HTTP) {
+  constructor(private nativeStorage: NativeStorage,private router: Router, private BasicInfoService: BasicInfoService, private diagnostic: Diagnostic, public alertController: AlertController, public zone: NgZone, public geolocation: Geolocation, private http: HTTP) {
+    
     
   }
 
 
+  manager(){
+
+    this.nativeStorage.getItem('login')
+      .then(
+        data => {
+          
+          this.router.navigate(['/storemanager']); 
+
+          
+        },
+        error => {
+          
+          this.router.navigate(['/storelogin']); 
+
+        }
+      );
+
+
+  }
 
   ngOnInit() {
    

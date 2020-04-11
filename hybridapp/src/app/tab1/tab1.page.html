@@ -1,8 +1,14 @@
 <ion-content [fullscreen]="true">
-  <ion-item-divider>
-    <ion-label style="font-size: 11.5px;color:grey">Get Opened Store, Hospital etc location. </ion-label>
-   
-  </ion-item-divider>
+  <ion-item lines="none">
+    
+    <ion-label>
+      <h2>Essentials Store Map</h2>
+     
+    </ion-label>
+    <ion-button (click)="manager()" fill="outline" slot="end"> Store Manager</ion-button>
+  </ion-item>
+
+
   <div style="height:100%" #Map class="map"></div>
  
 </ion-content>
